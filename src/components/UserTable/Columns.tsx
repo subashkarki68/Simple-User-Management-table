@@ -1,18 +1,47 @@
 import { ColumnDef } from '@tanstack/react-table'
+import { ArrowUpDown } from 'lucide-react'
 import { AddressType, User } from '../../schemas/userSchema'
+import { Button } from '../ui/button'
 
 export const columns: ColumnDef<User>[] = [
     {
         accessorKey: 'profilePicture',
         header: '',
+        cell: ({ row }) => {
+            return <img src={row.getValue('profilePicture')} alt="PP" />
+        },
     },
     {
         accessorKey: 'name',
-        header: 'Name',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant={'ghost'}
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    Name
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
     },
     {
         accessorKey: 'email',
-        header: 'Email',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant={'ghost'}
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    Email
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
     },
     {
         accessorKey: 'phoneNumber',
@@ -33,10 +62,39 @@ export const columns: ColumnDef<User>[] = [
     {
         accessorKey: 'province',
         header: 'Province',
-        cell: ({ row }) => row.original.address.province,
+        cell: ({ row }) => {
+            const address: AddressType = row.getValue('address')
+            return <span>{address.province}</span>
+        },
     },
     {
         accessorKey: 'dob',
-        header: 'DOB',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant={'ghost'}
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    DOB
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        },
+    },
+    {
+        accessorKey: 'actions',
+        header: ' ',
+        cell: () => (
+            <div className="flex justify-evenly gap-2">
+                <Button variant={'secondary'} className="grow">
+                    Edit
+                </Button>
+                <Button variant={'destructive'} className="grow">
+                    Delete
+                </Button>
+            </div>
+        ),
     },
 ]

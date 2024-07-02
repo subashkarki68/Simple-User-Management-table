@@ -10,7 +10,6 @@ const UserTable = () => {
     console.log(users)
     return (
         <div>
-            UserTable
             <DataTable columns={columns} data={users} />
         </div>
     )
