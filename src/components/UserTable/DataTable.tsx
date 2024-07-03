@@ -41,12 +41,14 @@ interface DataTableProps<TData, Tvalue> {
     columns: ColumnDef<TData, Tvalue>[]
     data: TData[]
     fillSampleData?: () => void
+    handleDataReset?: () => void
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
     fillSampleData,
+    handleDataReset,
 }: DataTableProps<TData, TValue>) {
     const [pagination, setPagination] = useState({
         pageSize: 5,
@@ -91,6 +93,9 @@ export function DataTable<TData, TValue>({
                 <div className="flex gap-2">
                     <Button className="bg-violet-900" onClick={fillSampleData}>
                         Fill Sample Data
+                    </Button>
+                    <Button className="bg-violet-900" onClick={handleDataReset}>
+                        Reset Sample Data
                     </Button>
                     <Sheet>
                         <SheetTrigger

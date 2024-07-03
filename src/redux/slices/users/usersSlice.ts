@@ -49,13 +49,18 @@ export const usersSlice: Slice<usersState> = createSlice({
                 (user) => user.email !== action.payload.email
             )
         },
+        resetData: () => {
+            console.log('Ressting Data')
+            return initialState
+        },
     },
 })
 
 //Selectors
 export const selectAllUsers = (state: RootState) => state.users
 
-export const { addUser, fillUser, updateUser, removeUser } = usersSlice.actions
+export const { addUser, fillUser, updateUser, removeUser, resetData } =
+    usersSlice.actions
 const usersReducer: Reducer<usersState> = usersSlice.reducer
 
 export default usersReducer

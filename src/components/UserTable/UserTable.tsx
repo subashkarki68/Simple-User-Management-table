@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { fillUser, selectAllUsers } from '../../redux/slices/users/usersSlice'
+import {
+    fillUser,
+    resetData,
+    selectAllUsers,
+} from '../../redux/slices/users/usersSlice'
 import { AppDispatch } from '../../redux/store'
 import { usersData } from '../../sample_data'
 import { columns } from './Columns'
@@ -15,6 +19,9 @@ const UserTable = () => {
             dispatch(fillUser(user))
         })
     }
+    const handleDataReset = () => {
+        dispatch(resetData())
+    }
 
     return (
         <div>
@@ -23,6 +30,7 @@ const UserTable = () => {
                 columns={columns}
                 data={users.users}
                 fillSampleData={handleFillSampleData}
+                handleDataReset={handleDataReset}
             />
         </div>
     )
