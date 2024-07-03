@@ -11,7 +11,9 @@ import {
 } from '@tanstack/react-table'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
-import { Button } from '../ui/button'
+import { User } from '../../schemas/userSchema'
+import UserForm from '../Form/UserForm'
+import { Button, buttonVariants } from '../ui/button'
 import { Input } from '../ui/input'
 import {
     Select,
@@ -21,6 +23,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from '../ui/select'
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from '../ui/sheet'
 import {
     Table,
     TableBody,
@@ -32,11 +41,15 @@ import {
 interface DataTableProps<TData, Tvalue> {
     columns: ColumnDef<TData, Tvalue>[]
     data: TData[]
+    fillSampleData?: () => void
+    onAddUser: (newUser: User) => void
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    fillSampleData,
+    onAddUser,
 }: DataTableProps<TData, TValue>) {
     const [pagination, setPagination] = useState({
         pageSize: 5,
@@ -61,62 +74,9 @@ export function DataTable<TData, TValue>({
             columnFilters,
         },
     })
+
     return (
         <div>
-            <div className="flex justify-center gap-2 my-10">
-                <Button
-                    className="bg-violet-900"
-                    onClick={() => table.firstPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    <ChevronLeftIcon />
-                    <ChevronLeftIcon />
-                </Button>
-                <Button
-                    className="bg-violet-900"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                >
-                    <ChevronLeftIcon />
-                </Button>
-                <Button variant={'outline'}>{pagination.pageIndex + 1}</Button>
-                <Button
-                    className="bg-violet-900"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    <ChevronRightIcon />
-                </Button>
-                <Button
-                    className="bg-violet-900"
-                    onClick={() => table.lastPage()}
-                    disabled={!table.getCanNextPage()}
-                >
-                    <ChevronRightIcon />
-                    <ChevronRightIcon />
-                </Button>
-                <Select
-                    onValueChange={(value) =>
-                        table.setPageSize(parseInt(value))
-                    }
-                >
-                    <SelectTrigger className="w-[80px]">
-                        <SelectValue placeholder="Limit" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            {[5, 10, 15, 20, 25, 30].map((pageSize) => (
-                                <SelectItem
-                                    key={pageSize}
-                                    value={String(pageSize)}
-                                >
-                                    {pageSize}
-                                </SelectItem>
-                            ))}
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
-            </div>
             <div className="flex justify-between py-4">
                 <Input
                     placeholder="Filter Names..."
@@ -131,9 +91,27 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm ml-10"
                 />
-                <Button className="max-w-sm mr-10 bg-violet-900">
-                    Add User
-                </Button>
+                <div className="flex gap-2">
+                    <Button className="bg-violet-900" onClick={fillSampleData}>
+                        Fill Sample Data
+                    </Button>
+                    <Sheet>
+                        <SheetTrigger
+                            className={`grow button bg-violet-900 ${buttonVariants()} max-w-sm mr-10`}
+                        >
+                            Add User
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>Edit User</SheetTitle>
+                                <UserForm
+                                    editingUser={false}
+                                    onAddUser={onAddUser}
+                                />
+                            </SheetHeader>
+                        </SheetContent>
+                    </Sheet>
+                </div>
             </div>
             <div className="rounded-md border">
                 <Table>
@@ -190,6 +168,60 @@ export function DataTable<TData, TValue>({
                         )}
                     </TableBody>
                 </Table>
+            </div>
+            <div className="flex justify-center gap-2 my-10">
+                <Button
+                    className="bg-violet-900"
+                    onClick={() => table.firstPage()}
+                    disabled={!table.getCanPreviousPage()}
+                >
+                    <ChevronLeftIcon />
+                    <ChevronLeftIcon />
+                </Button>
+                <Button
+                    className="bg-violet-900"
+                    onClick={() => table.previousPage()}
+                    disabled={!table.getCanPreviousPage()}
+                >
+                    <ChevronLeftIcon />
+                </Button>
+                <Button variant={'outline'}>{pagination.pageIndex + 1}</Button>
+                <Button
+                    className="bg-violet-900"
+                    onClick={() => table.nextPage()}
+                    disabled={!table.getCanNextPage()}
+                >
+                    <ChevronRightIcon />
+                </Button>
+                <Button
+                    className="bg-violet-900"
+                    onClick={() => table.lastPage()}
+                    disabled={!table.getCanNextPage()}
+                >
+                    <ChevronRightIcon />
+                    <ChevronRightIcon />
+                </Button>
+                <Select
+                    onValueChange={(value) =>
+                        table.setPageSize(parseInt(value))
+                    }
+                >
+                    <SelectTrigger className="w-[80px]">
+                        <SelectValue placeholder="Limit" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            {[5, 10, 15, 20, 25, 30].map((pageSize) => (
+                                <SelectItem
+                                    key={pageSize}
+                                    value={String(pageSize)}
+                                >
+                                    {pageSize}
+                                </SelectItem>
+                            ))}
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
             </div>
         </div>
     )

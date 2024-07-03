@@ -2,13 +2,28 @@ import { useState } from 'react'
 
 const useLocalStorage = (key: string, initialValue: any) => {
     const [storedValue, setStoredValue] = useState(() => {
-        const item = localStorage.getItem(key)
-        return item ? JSON.parse(item) : initialValue
+        try {
+            const item = localStorage.getItem(key)
+            return item ? JSON.parse(item) : initialValue
+        } catch (error) {
+            console.error(
+                'Error reading localStorage key “' + key + '”: ',
+                error
+            )
+            return initialValue
+        }
     })
 
     const setValue = (value: any) => {
-        setStoredValue(value)
-        localStorage.setItem(key, JSON.stringify(value))
+        try {
+            setStoredValue(value)
+            localStorage.setItem(key, JSON.stringify(value))
+        } catch (error) {
+            console.error(
+                'Error setting localStorage key “' + key + '”: ',
+                error
+            )
+        }
     }
     return [storedValue, setValue]
 }

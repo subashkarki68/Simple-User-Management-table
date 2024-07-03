@@ -19,20 +19,22 @@ export const UserSchema = z.object({
         { message: 'Time Travellers not allowed' }
     ),
     address: z.object({
-        city: z.string(),
-        district: z.string(),
-        province: z.union([
-            z.literal('1'),
-            z.literal('2'),
-            z.literal('3'),
-            z.literal('4'),
-            z.literal('5'),
-            z.literal('6'),
-            z.literal('7'),
-        ]),
+        city: z.string().default(''),
+        district: z.string().default(''),
+        province: z
+            .union([
+                z.literal('1'),
+                z.literal('2'),
+                z.literal('3'),
+                z.literal('4'),
+                z.literal('5'),
+                z.literal('6'),
+                z.literal('7'),
+            ])
+            .default('3'),
         country: z.string().default('Nepal'),
     }),
-    profilePicture: z.string().url().default(''),
+    profilePicture: z.string().default(''),
 })
 
 export type User = z.infer<typeof UserSchema>

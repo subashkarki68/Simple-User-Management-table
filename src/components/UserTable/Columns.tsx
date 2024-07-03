@@ -62,7 +62,7 @@ export const columns: ColumnDef<User>[] = [
             const address: AddressType = row.getValue('address')
             return (
                 <span>
-                    {address.city}, {address.country}
+                    {address?.city || ''}, {address?.country || ''}
                 </span>
             )
         },
@@ -72,7 +72,7 @@ export const columns: ColumnDef<User>[] = [
         header: 'Province',
         cell: ({ row }) => {
             const address: AddressType = row.getValue('address')
-            return <span>{address.province}</span>
+            return <span>{address?.province || '3'}</span>
         },
     },
     {
@@ -94,7 +94,7 @@ export const columns: ColumnDef<User>[] = [
     {
         accessorKey: 'actions',
         header: ' ',
-        cell: () => (
+        cell: ({ row }) => (
             <div className="flex justify-evenly gap-2">
                 <Sheet>
                     <SheetTrigger
@@ -105,7 +105,13 @@ export const columns: ColumnDef<User>[] = [
                     <SheetContent>
                         <SheetHeader>
                             <SheetTitle>Edit User</SheetTitle>
-                            <UserForm />
+                            <UserForm
+                                initialUser={row.original}
+                                editingUser={true}
+                                onAddUser={() => {
+                                    alert('edited')
+                                }}
+                            />
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>

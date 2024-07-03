@@ -4,7 +4,7 @@ export const usersData: User[] = [
     {
         name: 'John Doe',
         email: 'john.doe@example.com',
-        phoneNumber: '+977987654321',
+        phoneNumber: '987654321',
         dob: '1990-05-15',
         address: {
             city: 'Kathmandu',
@@ -17,7 +17,7 @@ export const usersData: User[] = [
     {
         name: 'Jane Smith',
         email: 'jane.smith@example.com',
-        phoneNumber: '+977986543210',
+        phoneNumber: '986543210',
         dob: '1985-12-28',
         address: {
             city: 'Pokhara',
@@ -30,7 +30,7 @@ export const usersData: User[] = [
     {
         name: 'Michael Johnson',
         email: 'michael.johnson@example.com',
-        phoneNumber: '+977985432109',
+        phoneNumber: '985432109',
         dob: '1988-07-10',
         address: {
             city: 'Biratnagar',
@@ -43,7 +43,7 @@ export const usersData: User[] = [
     {
         name: 'Anna Williams',
         email: 'anna.williams@example.com',
-        phoneNumber: '+977987654321',
+        phoneNumber: '987654321',
         dob: '1990-05-15',
         address: {
             city: 'Kathmandu',
@@ -56,7 +56,7 @@ export const usersData: User[] = [
     {
         name: 'Emily Brown',
         email: 'emily.brown@example.com',
-        phoneNumber: '+977986543210',
+        phoneNumber: '986543210',
         dob: '1985-12-28',
         address: {
             city: 'Pokhara',
@@ -69,7 +69,7 @@ export const usersData: User[] = [
     {
         name: 'Sophia Davis',
         email: 'sophia.davis@example.com',
-        phoneNumber: '+977985432109',
+        phoneNumber: '985432109',
         dob: '1988-07-10',
         address: {
             city: 'Biratnagar',
@@ -82,7 +82,7 @@ export const usersData: User[] = [
     {
         name: 'Daniel Taylor',
         email: 'daniel.taylor@example.com',
-        phoneNumber: '+977984321098',
+        phoneNumber: '984321098',
         dob: '1992-03-22',
         address: {
             city: 'Lalitpur',
@@ -95,7 +95,7 @@ export const usersData: User[] = [
     {
         name: 'Olivia Martinez',
         email: 'olivia.martinez@example.com',
-        phoneNumber: '+977983210987',
+        phoneNumber: '983210987',
         dob: '1987-09-16',
         address: {
             city: 'Bhaktapur',
@@ -108,7 +108,7 @@ export const usersData: User[] = [
     {
         name: 'David Harris',
         email: 'david.harris@example.com',
-        phoneNumber: '+977982109876',
+        phoneNumber: '982109876',
         dob: '1986-11-08',
         address: {
             city: 'Dharan',
@@ -121,7 +121,7 @@ export const usersData: User[] = [
     {
         name: 'Ella Walker',
         email: 'ella.walker@example.com',
-        phoneNumber: '+977981098765',
+        phoneNumber: '981098765',
         dob: '1991-06-25',
         address: {
             city: 'Hetauda',
@@ -134,7 +134,7 @@ export const usersData: User[] = [
     {
         name: 'James Wilson',
         email: 'james.wilson@example.com',
-        phoneNumber: '+977980987654',
+        phoneNumber: '980987654',
         dob: '1989-08-19',
         address: {
             city: 'Janakpur',
@@ -147,7 +147,7 @@ export const usersData: User[] = [
     {
         name: 'Grace Lewis',
         email: 'grace.lewis@example.com',
-        phoneNumber: '+977979876543',
+        phoneNumber: '979876543',
         dob: '1984-01-12',
         address: {
             city: 'Chitwan',
@@ -160,7 +160,7 @@ export const usersData: User[] = [
     {
         name: 'Henry Young',
         email: 'henry.young@example.com',
-        phoneNumber: '+977978765432',
+        phoneNumber: '978765432',
         dob: '1993-04-30',
         address: {
             city: 'Butwal',
@@ -173,7 +173,7 @@ export const usersData: User[] = [
     {
         name: 'Isabella King',
         email: 'isabella.king@example.com',
-        phoneNumber: '+977977654321',
+        phoneNumber: '977654321',
         dob: '1982-02-21',
         address: {
             city: 'Nepalgunj',
@@ -186,7 +186,7 @@ export const usersData: User[] = [
     {
         name: 'Liam White',
         email: 'liam.white@example.com',
-        phoneNumber: '+977976543210',
+        phoneNumber: '976543210',
         dob: '1980-12-05',
         address: {
             city: 'Dhangadhi',
@@ -199,7 +199,7 @@ export const usersData: User[] = [
     {
         name: 'Mia Hall',
         email: 'mia.hall@example.com',
-        phoneNumber: '+977975432109',
+        phoneNumber: '975432109',
         dob: '1995-11-18',
         address: {
             city: 'Birgunj',
@@ -212,7 +212,7 @@ export const usersData: User[] = [
     {
         name: 'Nathan Scott',
         email: 'nathan.scott@example.com',
-        phoneNumber: '+977974321098',
+        phoneNumber: '974321098',
         dob: '1983-07-03',
         address: {
             city: 'Ghorahi',
@@ -225,7 +225,7 @@ export const usersData: User[] = [
     {
         name: 'Ava Adams',
         email: 'ava.adams@example.com',
-        phoneNumber: '+977973210987',
+        phoneNumber: '973210987',
         dob: '1981-03-12',
         address: {
             city: 'Itahari',
@@ -238,7 +238,7 @@ export const usersData: User[] = [
     {
         name: 'William Campbell',
         email: 'william.campbell@example.com',
-        phoneNumber: '+977972109876',
+        phoneNumber: '972109876',
         dob: '1987-06-07',
         address: {
             city: 'Bharatpur',
@@ -251,7 +251,7 @@ export const usersData: User[] = [
     {
         name: 'Chloe Turner',
         email: 'chloe.turner@example.com',
-        phoneNumber: '+977971098765',
+        phoneNumber: '971098765',
         dob: '1996-01-20',
         address: {
             city: 'Tulsipur',
@@ -260,5 +260,239 @@ export const usersData: User[] = [
             country: 'Nepal',
         },
         profilePicture: 'https://randomuser.me/api/portraits/women/11.jpg',
+    },
+    {
+        name: 'Ethan Harris',
+        email: 'ethan.harris@example.com',
+        phoneNumber: '970987654',
+        dob: '1985-09-15',
+        address: {
+            city: 'Dortmund',
+            district: 'Germany',
+            province: '1',
+            country: 'Germany',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/10.jpg',
+    },
+    {
+        name: 'Olivia Green',
+        email: 'olivia.green@example.com',
+        phoneNumber: '969876543',
+        dob: '1992-08-02',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/12.jpg',
+    },
+    {
+        name: 'Daniel Clark',
+        email: 'daniel.clark@example.com',
+        phoneNumber: '968765432',
+        dob: '1988-04-29',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/11.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '967654321',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/13.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '966543210',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/12.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '965432109',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/14.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '964321098',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/13.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '963210987',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/15.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '962109876',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/14.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '961098765',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/16.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '960987654',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/15.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '959876543',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/17.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '958765432',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/16.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '957654321',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/18.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '956543210',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/17.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '955432109',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/19.jpg',
+    },
+    {
+        name: 'Michael Thompson',
+        email: 'michael.thompson@example.com',
+        phoneNumber: '954321098',
+        dob: '1990-12-01',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/men/18.jpg',
+    },
+    {
+        name: 'Aria Wilson',
+        email: 'aria.wilson@example.com',
+        phoneNumber: '953210987',
+        dob: '1993-02-14',
+        address: {
+            city: 'Kathmandu',
+            district: 'Bagmati',
+            province: '2',
+            country: 'Nepal',
+        },
+        profilePicture: 'https://randomuser.me/api/portraits/women/20.jpg',
     },
 ]

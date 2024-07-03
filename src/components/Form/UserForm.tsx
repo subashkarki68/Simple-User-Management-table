@@ -1,8 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { isEmpty } from 'lodash'
+import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Select from 'react-select'
 import { z } from 'zod'
+import useLocalStorage from '../../hooks/useLocalStorage'
 import { User, UserSchema } from '../../schemas/userSchema'
 import { Button } from '../ui/button'
 import {
@@ -14,9 +16,30 @@ import {
     FormMessage,
 } from '../ui/form'
 import { Input } from '../ui/input'
+import {
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    Select as SelectUI,
+} from '../ui/select'
 import { SheetClose } from '../ui/sheet'
 import axiosInstance from '../utils/axiosInstance'
-const UserForm = ({ initialUser }: { initialUser?: User }) => {
+const UserForm = ({
+    initialUser,
+    editingUser,
+    onAddUser,
+}: {
+    initialUser?: User
+    editingUser: boolean
+    onAddUser: (newUser: User) => void
+}) => {
+    const [countries, setCountries] = useState([])
+    const [selectedImage, setSelectedImage] = useState('')
+    const [Users, setUsers] = useLocalStorage('Users', {})
+
+    const imageSelectRef = useRef<HTMLInputElement>(null)
+    const closeSheetRef = useRef<HTMLButtonElement>(null)
+
     const form = useForm<z.infer<typeof UserSchema>>({
         resolver: zodResolver(UserSchema),
         defaultValues: {
@@ -33,14 +56,6 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
             profilePicture: initialUser?.profilePicture || '',
         },
     })
-
-    const onSubmit = (values: z.infer<typeof UserSchema>) => {
-        alert('Sub')
-        console.log('Values', values)
-        localStorage.setItem('Apple', 'taste')
-    }
-
-    const [countries, setCountries] = useState([])
 
     useEffect(() => {
         let isMounted = true
@@ -70,26 +85,101 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
         }
     }, [])
 
+    const onSubmit = (values: z.infer<typeof UserSchema>) => {
+        console.log(values)
+        // const newValues = (): User =>
+        //     isIterable(Users) ? [...Users, values] : [values]
+
+        if (!editingUser) {
+            if (Users === undefined || isEmpty(Users)) return onAddUser(values)
+            const user = Users.find((u: User) => u.email === values.email)
+            if (!user) {
+                onAddUser(values)
+                if (closeSheetRef.current) {
+                    closeSheetRef.current.click()
+                }
+            } else alert('Email Already Exist')
+        } else {
+            //TODO
+            console.log('editing')
+            console.log(Users)
+        }
+    }
+
+    const handleImageClick = () => {
+        if (imageSelectRef.current) imageSelectRef.current.click()
+    }
+    const handleImageChange = (event: any, field: any) => {
+        const file = event.target.files[0]
+        if (file) {
+            const imageURL = URL.createObjectURL(file)
+            setSelectedImage(imageURL)
+            field.onChange(imageURL)
+        }
+    }
+
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel className="flex">Name *</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="Enter Name..."
-                                    {...field}
-                                    autoComplete="name"
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+            <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                encType="multipart/form-data"
+                className="space-y-8"
+            >
+                <div className="flex justify-between gap-2">
+                    <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className="flex">Name *</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Enter Name..."
+                                        {...field}
+                                        autoComplete="name"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="profilePicture"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-col items-center">
+                                <FormLabel>Upload Image</FormLabel>
+                                <FormControl>
+                                    <div>
+                                        <Input
+                                            type="file"
+                                            accept="image/png"
+                                            name={field.name}
+                                            ref={imageSelectRef}
+                                            style={{ display: 'none' }}
+                                            onChange={(event) =>
+                                                handleImageChange(event, field)
+                                            }
+                                        />
+                                        <img
+                                            onClick={handleImageClick}
+                                            className="rounded-full cursor-pointer hover:opacity-70"
+                                            alt="User Image"
+                                            width={'60px'}
+                                            height={'60px'}
+                                            src={
+                                                selectedImage ||
+                                                'https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0'
+                                            }
+                                        />
+                                    </div>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
                 <FormField
                     control={form.control}
                     name="email"
@@ -98,6 +188,7 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
                             <FormLabel className="flex">Email *</FormLabel>
                             <FormControl>
                                 <Input
+                                    disabled={initialUser?.email ? true : false}
                                     placeholder="Enter Email..."
                                     {...field}
                                     autoComplete="email"
@@ -149,7 +240,7 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
                         <FormField
                             control={form.control}
                             name="address.country"
-                            render={({ field }) => (
+                            render={({ field }: { field: any }) => (
                                 <FormItem className="w-[300px]">
                                     <FormLabel className="flex">
                                         Country
@@ -194,13 +285,14 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
                                             </SelectContent>
                                         </Select> */}
                                         <Select
+                                            name={field.name}
                                             options={countries}
                                             onChange={(option: any) =>
                                                 field.onChange(option?.value)
                                             }
                                             defaultValue={{
-                                                value: field.value,
-                                                label: field.value,
+                                                value: 'Nepal',
+                                                label: 'Nepal',
                                             }}
                                         />
                                     </FormControl>
@@ -231,7 +323,7 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
                                     <FormLabel className="flex">
                                         Province
                                     </FormLabel>
-                                    {/* <Select
+                                    <SelectUI
                                         onValueChange={field.onChange}
                                         defaultValue={field.value}
                                     >
@@ -249,7 +341,7 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
                                             <SelectItem value="6">6</SelectItem>
                                             <SelectItem value="7">7</SelectItem>
                                         </SelectContent>
-                                    </Select> */}
+                                    </SelectUI>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -273,9 +365,13 @@ const UserForm = ({ initialUser }: { initialUser?: User }) => {
                         />
                     </div>
                 </div>
-
                 <Button type="submit">Submit</Button>
-                <SheetClose asChild>close</SheetClose>
+                <SheetClose asChild>
+                    <Button
+                        style={{ display: 'none' }}
+                        ref={closeSheetRef}
+                    ></Button>
+                </SheetClose>
             </form>
         </Form>
     )
