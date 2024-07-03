@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <div className="flex justify-between py-4">
+            <div className="flex flex-col-reverse gap-5 sm:flex-row justify-between py-4">
                 <Input
                     placeholder="Filter Names..."
                     value={
@@ -90,16 +90,22 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm ml-10"
                 />
-                <div className="flex gap-2">
-                    <Button className="bg-violet-900" onClick={fillSampleData}>
+                <div className="flex flex-col sm:flex-row gap-2">
+                    <Button
+                        className="grow bg-violet-900"
+                        onClick={fillSampleData}
+                    >
                         Fill Sample Data
                     </Button>
-                    <Button className="bg-violet-900" onClick={handleDataReset}>
+                    <Button
+                        className="grow bg-violet-900"
+                        onClick={handleDataReset}
+                    >
                         Reset Sample Data
                     </Button>
                     <Sheet>
                         <SheetTrigger
-                            className={`grow button bg-violet-900 ${buttonVariants()} max-w-sm mr-10`}
+                            className={`grow bg-violet-900 ${buttonVariants()} sm:mr-10`}
                         >
                             Add User
                         </SheetTrigger>
