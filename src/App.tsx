@@ -6,11 +6,7 @@ const App = () => {
         name: 'John',
         age: 30,
     })
-    return (
-        <div>
-            <UserTable />
-        </div>
-    )
+    return <UserTable />
 }
 
 export default App

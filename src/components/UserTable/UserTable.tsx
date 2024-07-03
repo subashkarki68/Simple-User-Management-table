@@ -10,6 +10,7 @@ const UserTable = () => {
     console.log(users)
     return (
         <div>
+            {/* <ModeToggle /> */}
             <DataTable columns={columns} data={users} />
         </div>
     )

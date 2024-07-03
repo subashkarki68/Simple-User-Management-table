@@ -9,6 +9,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
@@ -64,35 +65,42 @@ export function DataTable<TData, TValue>({
         <div>
             <div className="flex justify-center gap-2 my-10">
                 <Button
+                    className="bg-violet-900"
                     onClick={() => table.firstPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    {'<< first'}
+                    <ChevronLeftIcon />
+                    <ChevronLeftIcon />
                 </Button>
                 <Button
+                    className="bg-violet-900"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
                 >
-                    {'<'}
+                    <ChevronLeftIcon />
                 </Button>
+                <Button variant={'outline'}>{pagination.pageIndex + 1}</Button>
                 <Button
+                    className="bg-violet-900"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
                 >
-                    {'>'}
+                    <ChevronRightIcon />
                 </Button>
                 <Button
+                    className="bg-violet-900"
                     onClick={() => table.lastPage()}
                     disabled={!table.getCanNextPage()}
                 >
-                    {'last >>'}
+                    <ChevronRightIcon />
+                    <ChevronRightIcon />
                 </Button>
                 <Select
                     onValueChange={(value) =>
                         table.setPageSize(parseInt(value))
                     }
                 >
-                    <SelectTrigger className="w-[60px]">
+                    <SelectTrigger className="w-[80px]">
                         <SelectValue placeholder="Limit" />
                     </SelectTrigger>
                     <SelectContent>
@@ -109,7 +117,7 @@ export function DataTable<TData, TValue>({
                     </SelectContent>
                 </Select>
             </div>
-            <div className="flex py-4">
+            <div className="flex justify-between py-4">
                 <Input
                     placeholder="Filter Names..."
                     value={
@@ -123,15 +131,21 @@ export function DataTable<TData, TValue>({
                     }
                     className="max-w-sm ml-10"
                 />
+                <Button className="max-w-sm mr-10 bg-violet-900">
+                    Add User
+                </Button>
             </div>
             <div className="rounded-md border">
                 <Table>
-                    <TableHeader>
+                    <TableHeader className="bg-violet-900">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead
+                                            key={header.id}
+                                            className="text-white"
+                                        >
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(

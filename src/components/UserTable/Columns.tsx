@@ -1,7 +1,15 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { ArrowUpDown } from 'lucide-react'
 import { AddressType, User } from '../../schemas/userSchema'
-import { Button } from '../ui/button'
+import UserForm from '../Form/UserForm'
+import { Button, buttonVariants } from '../ui/button'
+import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from '../ui/sheet'
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -88,10 +96,20 @@ export const columns: ColumnDef<User>[] = [
         header: ' ',
         cell: () => (
             <div className="flex justify-evenly gap-2">
-                <Button variant={'secondary'} className="grow">
-                    Edit
-                </Button>
-                <Button variant={'destructive'} className="grow">
+                <Sheet>
+                    <SheetTrigger
+                        className={`grow button ${buttonVariants({ variant: 'secondary' })}`}
+                    >
+                        Edit
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetHeader>
+                            <SheetTitle>Edit User</SheetTitle>
+                            <UserForm />
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+                <Button variant={'destructive'} className="grow bg-violet-900">
                     Delete
                 </Button>
             </div>
