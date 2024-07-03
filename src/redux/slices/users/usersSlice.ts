@@ -26,6 +26,13 @@ export const usersSlice: Slice<usersState> = createSlice({
                 (u: User) => u.email === action.payload.email
             )
             if (foundUser) return alert('User Email already exist')
+            action.payload.address.country === ''
+                ? (action.payload.address.country = 'Nepal')
+                : action.payload.address.country
+            action.payload.profilePicture === ''
+                ? (action.payload.profilePicture =
+                      'https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0')
+                : action.payload.profilePicture
             state.users = [...state.users, action.payload]
         },
         updateUser: (state, action: PayloadAction<User>) => {
@@ -47,7 +54,7 @@ export const usersSlice: Slice<usersState> = createSlice({
 //Selectors
 export const selectAllUsers = (state: RootState) => state.users
 
-export const { addUser, fillUser } = usersSlice.actions
+export const { addUser, fillUser, updateUser } = usersSlice.actions
 const usersReducer: Reducer<usersState> = usersSlice.reducer
 
 export default usersReducer

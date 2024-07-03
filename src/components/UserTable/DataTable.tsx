@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-table'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useState } from 'react'
-import { User } from '../../schemas/userSchema'
 import UserForm from '../Form/UserForm'
 import { Button, buttonVariants } from '../ui/button'
 import { Input } from '../ui/input'
@@ -42,14 +41,12 @@ interface DataTableProps<TData, Tvalue> {
     columns: ColumnDef<TData, Tvalue>[]
     data: TData[]
     fillSampleData?: () => void
-    onAddUser: (newUser: User) => void
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
     fillSampleData,
-    onAddUser,
 }: DataTableProps<TData, TValue>) {
     const [pagination, setPagination] = useState({
         pageSize: 5,
@@ -104,10 +101,7 @@ export function DataTable<TData, TValue>({
                         <SheetContent>
                             <SheetHeader>
                                 <SheetTitle>Edit User</SheetTitle>
-                                <UserForm
-                                    editingUser={false}
-                                    onAddUser={onAddUser}
-                                />
+                                <UserForm editingUser={false} />
                             </SheetHeader>
                         </SheetContent>
                     </Sheet>

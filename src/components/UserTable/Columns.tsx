@@ -16,7 +16,15 @@ export const columns: ColumnDef<User>[] = [
         accessorKey: 'profilePicture',
         header: '',
         cell: ({ row }) => {
-            return <img src={row.getValue('profilePicture')} alt="PP" />
+            return (
+                <img
+                    width={'60px'}
+                    height={'60px'}
+                    className="rounded-full object-contain"
+                    src={row.getValue('profilePicture')}
+                    alt="PP"
+                />
+            )
         },
     },
     {
@@ -108,9 +116,6 @@ export const columns: ColumnDef<User>[] = [
                             <UserForm
                                 initialUser={row.original}
                                 editingUser={true}
-                                onAddUser={() => {
-                                    alert('edited')
-                                }}
                             />
                         </SheetHeader>
                     </SheetContent>

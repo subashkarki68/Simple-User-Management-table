@@ -1,10 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { isEmpty } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import Select from 'react-select'
 import { z } from 'zod'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import { addUser, updateUser } from '../../redux/slices/users/usersSlice'
 import { User, UserSchema } from '../../schemas/userSchema'
 import { Button } from '../ui/button'
 import {
@@ -27,18 +27,17 @@ import axiosInstance from '../utils/axiosInstance'
 const UserForm = ({
     initialUser,
     editingUser,
-    onAddUser,
 }: {
     initialUser?: User
     editingUser: boolean
-    onAddUser: (newUser: User) => void
 }) => {
     const [countries, setCountries] = useState([])
     const [selectedImage, setSelectedImage] = useState('')
-    const [Users, setUsers] = useLocalStorage('Users', {})
 
     const imageSelectRef = useRef<HTMLInputElement>(null)
     const closeSheetRef = useRef<HTMLButtonElement>(null)
+
+    const dispatch = useDispatch()
 
     const form = useForm<z.infer<typeof UserSchema>>({
         resolver: zodResolver(UserSchema),
@@ -85,25 +84,37 @@ const UserForm = ({
         }
     }, [])
 
-    const onSubmit = (values: z.infer<typeof UserSchema>) => {
-        console.log(values)
-        // const newValues = (): User =>
-        //     isIterable(Users) ? [...Users, values] : [values]
+    // const onSubmit = (values: z.infer<typeof UserSchema>) => {
+    //     console.log(values)
+    //     // const newValues = (): User =>
+    //     //     isIterable(Users) ? [...Users, values] : [values]
 
-        if (!editingUser) {
-            if (Users === undefined || isEmpty(Users)) return onAddUser(values)
-            const user = Users.find((u: User) => u.email === values.email)
-            if (!user) {
-                onAddUser(values)
-                if (closeSheetRef.current) {
-                    closeSheetRef.current.click()
-                }
-            } else alert('Email Already Exist')
+    //     if (!editingUser) {
+    //         if (Users === undefined || isEmpty(Users)) return onAddUser(values)
+    //         const user = Users.find((u: User) => u.email === values.email)
+    //         if (!user) {
+    //             onAddUser(values)
+    //             if (closeSheetRef.current) {
+    //                 closeSheetRef.current.click()
+    //             }
+    //         } else alert('Email Already Exist')
+    //     } else {
+    //         //TODO
+    //         console.log('editing')
+    //         console.log(Users)
+    //     }
+    // }
+
+    const onSubmit = (values: z.infer<typeof UserSchema>) => {
+        console.log('Adding new User', values)
+        if (editingUser) {
+            const editedUser = dispatch(updateUser(values))
+            console.log('editedUser', editedUser)
         } else {
-            //TODO
-            console.log('editing')
-            console.log(Users)
+            const newUser = dispatch(addUser(values))
+            console.log('User Added:', newUser)
         }
+        closeSheetRef.current?.click()
     }
 
     const handleImageClick = () => {
