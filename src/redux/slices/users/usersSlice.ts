@@ -44,6 +44,7 @@ export const usersSlice: Slice<usersState> = createSlice({
             })
         },
         removeUser: (state, action: PayloadAction<User>) => {
+            console.log('Removing User', action.payload)
             state.users = state.users.filter(
                 (user) => user.email !== action.payload.email
             )
@@ -54,7 +55,7 @@ export const usersSlice: Slice<usersState> = createSlice({
 //Selectors
 export const selectAllUsers = (state: RootState) => state.users
 
-export const { addUser, fillUser, updateUser } = usersSlice.actions
+export const { addUser, fillUser, updateUser, removeUser } = usersSlice.actions
 const usersReducer: Reducer<usersState> = usersSlice.reducer
 
 export default usersReducer

@@ -10,6 +10,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '../ui/sheet'
+import Delete from './actions/Delete'
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -120,9 +121,7 @@ export const columns: ColumnDef<User>[] = [
                         </SheetHeader>
                     </SheetContent>
                 </Sheet>
-                <Button variant={'destructive'} className="grow bg-violet-900">
-                    Delete
-                </Button>
+                <Delete email={row.original.email} />
             </div>
         ),
     },

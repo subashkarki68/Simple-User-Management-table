@@ -32,7 +32,9 @@ const UserForm = ({
     editingUser: boolean
 }) => {
     const [countries, setCountries] = useState([])
-    const [selectedImage, setSelectedImage] = useState('')
+    const [selectedImage, setSelectedImage] = useState(
+        initialUser?.profilePicture || ''
+    )
 
     const imageSelectRef = useRef<HTMLInputElement>(null)
     const closeSheetRef = useRef<HTMLButtonElement>(null)

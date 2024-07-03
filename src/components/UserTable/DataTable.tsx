@@ -100,7 +100,7 @@ export function DataTable<TData, TValue>({
                         </SheetTrigger>
                         <SheetContent>
                             <SheetHeader>
-                                <SheetTitle>Edit User</SheetTitle>
+                                <SheetTitle>Add User</SheetTitle>
                                 <UserForm editingUser={false} />
                             </SheetHeader>
                         </SheetContent>
