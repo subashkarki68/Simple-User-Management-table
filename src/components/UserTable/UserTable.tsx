@@ -20,7 +20,7 @@ const UserTable = () => {
         })
     }
     const handleDataReset = () => {
-        dispatch(resetData())
+        dispatch(resetData({}))
     }
 
     return (
